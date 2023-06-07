@@ -52,9 +52,6 @@ function flip(box){
 
 }
 
-
-document.getElementById('fail').volume -= 0.95;
-
 function checkMatchedBoxes(firstBox, secondBox){
 
   if(firstBox.dataset.technology === secondBox.dataset.technology){
