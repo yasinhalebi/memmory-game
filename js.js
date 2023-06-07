@@ -27,7 +27,10 @@ boxesArray.forEach((element, index ) => {
 
 });
 
+var flippedCards = [];
+
 function flip(box){
+
   box.classList.add('is-flipped');
 
   let flippedboxes= boxesArray.filter(flippedbox => flippedbox.classList.contains('is-flipped'));
@@ -45,6 +48,7 @@ function flip(box){
     checkMatchedBoxes(flippedboxes[0],flippedboxes[1]);
 
   }
+  
 
 }
 
@@ -62,6 +66,12 @@ function checkMatchedBoxes(firstBox, secondBox){
     firstBox.classList.add('has-match');
     secondBox.classList.add('has-match');
     document.getElementById('success').play();
+    flippedCards.push(firstBox,secondBox);
+    setTimeout(() =>{
+
+      checkAllCardsFlipped(flippedCards,boxesArray);
+      
+      }, duration)
   }else{
     setTimeout(() =>{
 
@@ -109,3 +119,12 @@ function flipBoxes() {
 
 // Call flipBoxes() when the page finishes loading
 window.addEventListener('load', flipBoxes);
+
+
+function checkAllCardsFlipped(flippedboxes,boxesArray) {
+  // Check if the number of flipped cards is equal to the total number of cards
+  if (flippedboxes.length === boxesArray.length) {
+    // Reload the page
+    location.reload();
+  }
+}
